@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width , initial-scale = 1.0">
+        <title>Etch-a-Sketch</title>
+        <link type="text/css" rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Etch-a-Sketch</h1>
+        </header>
+
+        <div class="container">
+
+        </div>
+
+        <script>
+            const container = document.querySelector('.container');
+
+            let a = 1
+        
+            while(a!==((16**2) + 1)){
+            
+                const gridDiv = document.createElement('div')
+                //gridDiv.setAttribute('class', `${a}`)
+                let size = (100/16) + "%";
+                console.log(size);
+
+                gridDiv.textContent = a;
+                gridDiv.setAttribute('style',`text-align:center; width:${size}; height:67px; background-color:grey`)
+                container.appendChild(gridDiv)
+                a++;
+            }    
+
+        </script>
+
+
+    </body>
+</html>

@@ -11,12 +11,19 @@ header h1{
     text-align: center;
     font-size: 3em;   
 }
+h1:hover{
+    color:red;
+}
 .container{
     display:flex;
     width:80%;
     margin:25px auto;
     padding:1%;
     flex-flow:wrap;
+}
+.squareDiv:hover{
+    background-color: cadetblue;
+
 }
 /* .container > :nth-child(2):hover{
     color:red;

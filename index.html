@@ -23,7 +23,7 @@
             while(a!==((16**2) + 1)){
             
                 const gridDiv = document.createElement('div')
-                //gridDiv.setAttribute('class', `${a}`)
+                gridDiv.setAttribute('class', `squareDiv`)
                 let size = (100/16) + "%";
                 console.log(size);
 
@@ -31,6 +31,13 @@
                 gridDiv.setAttribute('style',`text-align:center; width:${size}; height:67px; background-color:grey`)
                 container.appendChild(gridDiv)
                 a++;
+
+                gridDiv.addEventListener('mouseover', ()=>{
+                    gridDiv.style.backgroundColor = 'black';
+                })
+                gridDiv.addEventListener('mouseout', ()=>{
+                    gridDiv.style.backgroundColor = 'grey';
+                })
             }    
 
         </script>

@@ -18,27 +18,53 @@
         <script>
             const container = document.querySelector('.container');
 
-            let a = 1
+
+            const button = document.createElement('button');
+            button.textContent = "Grid Size ?"
+            document.body.insertBefore(button, container)
+
+            button.addEventListener('click', ()=>{
+                container.innerHTML=""
+                const gridSize = +prompt('Select a number(N) for an NxN grid [0-100]', 2)
+                if(gridSize < 0 || gridSize > 100){
+                    alert('Error. Number must be in range 1-100')
+                }
+                else{
+                    console.log(gridSize);
+                    createGrid(gridSize);
+                }
+            })
+
+            function createGrid(gridSize=16){
+                let a = 1
+                while(a!==((gridSize**2) + 1)){
+                
+                    const gridDiv = document.createElement('div')
+                    gridDiv.setAttribute('class', `squareDiv`)
+                    let size = (100/gridSize) + "%";
+                    console.log(size);
+
+                    gridDiv.textContent = a;
+                    gridDiv.setAttribute('style',`text-align:center; width:${size}; background-color:grey`)
+
+                    container.appendChild(gridDiv)
+                    a++;
+
+                    hoverEffect(gridDiv);
+                }
+            }
+
+            function hoverEffect(div){
+                div.addEventListener('mouseover', ()=>{
+                    div.style.backgroundColor = 'black';
+                })
+                div.addEventListener('mouseout', ()=>{
+                    div.style.backgroundColor = 'grey';
+                })
+            }
+            createGrid();    
+
         
-            while(a!==((16**2) + 1)){
-            
-                const gridDiv = document.createElement('div')
-                gridDiv.setAttribute('class', `squareDiv`)
-                let size = (100/16) + "%";
-                console.log(size);
-
-                gridDiv.textContent = a;
-                gridDiv.setAttribute('style',`text-align:center; width:${size}; height:67px; background-color:grey`)
-                container.appendChild(gridDiv)
-                a++;
-
-                gridDiv.addEventListener('mouseover', ()=>{
-                    gridDiv.style.backgroundColor = 'black';
-                })
-                gridDiv.addEventListener('mouseout', ()=>{
-                    gridDiv.style.backgroundColor = 'grey';
-                })
-            }    
 
         </script>
 

@@ -16,13 +16,13 @@ header h1{
     font-size: 4em; 
     font-weight: 500;  
 }
-header .para{
+header>.para{
     margin:1% auto 5%;
     font-size: 1.5em;
     color:#6a6868
 
 }
-header .theme{
+header>.theme{
     font-size: 1.5em;
     color:white;
 }
@@ -31,19 +31,18 @@ section{
     gap:5%;
     margin:16px;
 }
-
 .container{
     display:flex;
     width:78%;
     flex-flow:wrap;
     background-color: whitesmoke;
 }
-
 .menu{
     width:17%;
     display:flex;
     gap:20px;
     flex-direction: column;
+    text-align: center;
 }
 .input{
      display:flex;
@@ -53,9 +52,8 @@ section{
     background-color:buttonface;
     width:55%;
 }
-.input>input{
-    width:25%;
-    padding:5px;
+#sizeInput{
+    width:25%; 
     border:0px;
     outline:0px;
     text-align: center;
@@ -64,18 +62,63 @@ section{
     width:20%;
     background-color: white;
     border: 0;
-    margin:0px;padding:0px;
 }
-.clearBtn, .grayScale, .distinctScale, .coloredScale, .surpriseMode{
+.clearBtn, .grayScale, .coloredScale, .surpriseMode{
     padding:15px;
     border:none;     
     text-align: center;
 }
 .distinctScale{
+    padding:9px;
     display: block;
     background-color: buttonface;
-    padding:15px;
 }
-#colorPicker{
-    border: none;
+#colorPicker{border: none;}
+
+@media only screen and (max-width:1024px){
+
+    header>h1{font-size: 2.5em;}
+    header>.para{font-size: 1em;}
+    header>.theme{
+        width:50%;
+        position:absolute;
+        top:245px;
+        left:25%;
+        font-size: 1em;
+    }
+    section{
+        align-items: center;
+        flex-direction: column;
+        gap:75px;
+    }
+    .menu{
+        justify-content: center;
+        width:100%;
+        flex-flow: wrap;
+    }
+    .input{
+        width:50%;
+    }
+   .input > label{
+    display:flex;
+    padding:0px;
+    justify-content: center;
+    align-items: center;
+   }
+   .clearBtn, .grayScale, .coloredScale{padding:8px;}
+   .distinctScale{padding:2px;}
+   .container{width:100%;}
+}
+
+@media only screen and (max-width:400px){
+    header > h1{font-size: 2em;}
+    section{gap:45px;}
+    .menu{  
+        overflow: scroll;
+        flex-direction: column;
+        height:40px;
+    }
+    .input{ width:60%;}
+    .input > label{padding:8px}
+    header>.theme {top: 135px;}
 }

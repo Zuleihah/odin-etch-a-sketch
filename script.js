@@ -88,6 +88,9 @@ function hoverEffect(div, colR, colG, colB, text){
             opac ++;
         }               
     }) 
+    div.addEventListener('mouseout', ()=>{  
+            theme.textContent = text;
+    }) 
 
     clearBtn.addEventListener('click',()=>{
         div.style.backgroundColor = 'white'

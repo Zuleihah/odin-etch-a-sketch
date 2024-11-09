@@ -3,29 +3,79 @@
     font-family: monospace;
 }
 body{
+    background-image: linear-gradient(to bottom left, cadetblue, #f3d8db);
     margin:0;
+    
+}
+header{
+    text-align:center;
+}
+header h1{
+    color:black;
+    margin-bottom: 0;
+    font-size: 4em; 
+    font-weight: 500;  
+}
+header .para{
+    margin:1% auto 5%;
+    font-size: 1.5em;
+    color:#6a6868
+
+}
+header .theme{
+    font-size: 1.5em;
+    color:white;
+}
+section{
+    display:flex; 
+    gap:5%;
+    margin:16px;
 }
 
-header h1{
-    color:olive;
-    text-align: center;
-    font-size: 3em;   
-}
-h1:hover{
-    color:red;
-}
 .container{
     display:flex;
-    width:80%;
-    margin:25px auto;
-    padding:1%;
+    width:78%;
     flex-flow:wrap;
+    background-color: whitesmoke;
 }
-.squareDiv:hover{
-    background-color: cadetblue;
 
+.menu{
+    width:17%;
+    display:flex;
+    gap:20px;
+    flex-direction: column;
 }
-/* .container > :nth-child(2):hover{
-    color:red;
-    font-size:40px;
-} */
+.input{
+     display:flex;
+}
+.input > label{
+    padding: 15px;
+    background-color:buttonface;
+    width:55%;
+}
+.input>input{
+    width:25%;
+    padding:5px;
+    border:0px;
+    outline:0px;
+    text-align: center;
+}
+.input>.sizeBtn{
+    width:20%;
+    background-color: white;
+    border: 0;
+    margin:0px;padding:0px;
+}
+.clearBtn, .grayScale, .distinctScale, .coloredScale, .surpriseMode{
+    padding:15px;
+    border:none;     
+    text-align: center;
+}
+.distinctScale{
+    display: block;
+    background-color: buttonface;
+    padding:15px;
+}
+#colorPicker{
+    border: none;
+}

@@ -9,63 +9,133 @@
     <body>
         <header>
             <h1>Etch-a-Sketch</h1>
+            <p class="para"></p>
+            <p class="theme">COLOR: RGB(255,0,0)</p>
         </header>
+        <section>
+            <div class="menu">
 
-        <div class="container">
+                <div class="input"> 
+                    <label title="Input a number(N) for an NxN grid [0-100]" for="sizeInput">
+                        Grid Size?</label>
+                    <input value="16" id="sizeInput" type="number" min="0" max="100">
+                    <input type="submit" value="-->" class="sizeBtn">
+                </div>
 
-        </div>
+                <span class="distinctScale" >
+                    <input value='#ff0000' type='color' id = 'colorPicker'>
+                </span>
+
+                <button class="grayScale">Gray Scale</button>
+                <button class="coloredScale">Colored Scale</button>
+                <button class="clearBtn">Clear Grid</button>
+
+            </div>
+            <div class="container"> </div>
+        </section>
+ 
 
         <script>
+
             const container = document.querySelector('.container');
-
-
-            const button = document.createElement('button');
-            button.textContent = "Grid Size ?"
-            document.body.insertBefore(button, container)
-
-            button.addEventListener('click', ()=>{
+            const sizeBtn = document.querySelector('.sizeBtn');
+            const clearBtn = document.querySelector('.clearBtn');
+            const para = document.querySelector('.para');
+            const theme = document.querySelector('.theme');
+        
+            sizeBtn.addEventListener('click', ()=>{
+                const input = document.querySelector('input');
                 container.innerHTML=""
-                const gridSize = +prompt('Select a number(N) for an NxN grid [0-100]', 2)
+                theme.textContent = `COLOR: RGB(255,0,0)`
+
+                const gridSize = input.value;
                 if(gridSize < 0 || gridSize > 100){
                     alert('Error. Number must be in range 1-100')
                 }
                 else{
-                    console.log(gridSize);
                     createGrid(gridSize);
                 }
             })
+            
 
             function createGrid(gridSize=16){
+                para.textContent = `${gridSize}x${gridSize} Grid`;
                 let a = 1
                 while(a!==((gridSize**2) + 1)){
-                
-                    const gridDiv = document.createElement('div')
-                    gridDiv.setAttribute('class', `squareDiv`)
+                    container.style.cssText  = ('style', `height:${container.clientWidth}px`);
                     let size = (100/gridSize) + "%";
-                    console.log(size);
 
-                    gridDiv.textContent = a;
-                    gridDiv.setAttribute('style',`text-align:center; width:${size}; background-color:grey`)
-
+                    const gridDiv = document.createElement('div')
+                    gridDiv.setAttribute('style',`text-align:center; width:${size}; height:${size}; background-color:white`)
                     container.appendChild(gridDiv)
                     a++;
 
-                    hoverEffect(gridDiv);
+                    hoverEffect(gridDiv,255,0,0, theme.textContent);
+                    etchGray(gridDiv);                                    
+                    etchDistinct(gridDiv);
+                    etchColored(gridDiv);
                 }
             }
 
-            function hoverEffect(div){
-                div.addEventListener('mouseover', ()=>{
-                    div.style.backgroundColor = 'black';
-                })
-                div.addEventListener('mouseout', ()=>{
-                    div.style.backgroundColor = 'grey';
+            function etchDistinct(div){
+                const colPicker = document.querySelector('#colorPicker')
+                colPicker.addEventListener('input', ()=>{
+        
+                    let colorValue= colPicker.value;
+                    colorA = parseInt(colorValue.substr(1,2), 16)
+                    colorB = parseInt(colorValue.substr(3,2), 16)
+                    colorC = parseInt(colorValue.substr(5,2), 16)
+
+                    theme.textContent = `COLOR: RGB(${colorA}, ${colorB}, ${colorC})`;
+                    console.log(colorValue)
+                    console.log(colorA, colorB, colorC)
+                    hoverEffect(div, colorA, colorB, colorC, theme.textContent)
                 })
             }
+
+            function etchGray(div){
+                const grayScale = document.querySelector('.grayScale')
+                let color=Math.floor(Math.random()*255) + 1;
+
+                grayScale.addEventListener('click', ()=>{
+                    theme.textContent = `COLOR: GRAY-SCALE`
+                    hoverEffect(div, color, color, color, theme.textContent);    
+                })
+            }
+
+            function etchColored(div){
+                const coloredScale = document.querySelector('.coloredScale')
+                let colorA = Math.floor(Math.random()*255) + 1;
+                let colorB = Math.floor(Math.random()*255) + 1;
+                let colorC = Math.floor(Math.random()*255) + 1;
+                coloredScale.addEventListener('click', ()=>{
+                    theme.textContent = `COLOR: COLORED-SCALE`
+                    hoverEffect(div, colorA, colorB, colorC, theme.textContent);
+                })
+            }
+
+            
+            function hoverEffect(div, colR, colG, colB, text){
+                let opac = 1; 
+                div.addEventListener('mouseover', ()=>{  
+                    if(opac >= 10){
+                        theme.textContent = `rgba(${colR}, ${colG}, ${colB}, ${opac/10})`
+                    }
+                    else{
+                        div.style.backgroundColor = `rgba(${colR}, ${colG},${colB}, ${opac/10})`;
+                        theme.textContent = `rgba(${colR}, ${colG}, ${colB}, ${opac/10})`
+                        opac ++;
+                    }               
+                }) 
+
+                clearBtn.addEventListener('click',()=>{
+                    div.style.backgroundColor = 'white'
+                    theme.textContent=`${text}`
+                    opac = 1;
+                })  
+            }
+
             createGrid();    
-
-        
-
         </script>
 
 

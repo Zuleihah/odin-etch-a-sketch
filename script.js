@@ -1,8 +1,23 @@
+document.body.style.cssText = (`height:${window.innerHeight}px;`);
+
 const container = document.querySelector('.container');
 const sizeBtn = document.querySelector('.sizeBtn');
 const clearBtn = document.querySelector('.clearBtn');
-const para = document.querySelector('.para');
+const gridSizeText = document.querySelector('.gridSize');
 const theme = document.querySelector('.theme');
+
+function getContainerSize(){
+    if(window.matchMedia("(max-width:600px)").matches){
+        document.body.insertBefore(theme, container)
+        container.style.cssText  = ('style', `height:${container.clientWidth}px`)
+    }
+    else{
+        if(window.matchMedia("(max-width:1024px)").matches){
+            document.body.insertBefore(theme, container)
+        }
+        container.style.cssText  = ('style', `height: ${window.innerHeight*0.95}px; width:${container.clientHeight}px`);
+    }
+}
 
 sizeBtn.addEventListener('click', ()=>{
     const input = document.querySelector('input');
@@ -18,12 +33,11 @@ sizeBtn.addEventListener('click', ()=>{
     }
 })
 
-
 function createGrid(gridSize=16){
-    para.textContent = `${gridSize}x${gridSize} Grid`;
+    gridSizeText.textContent = `${gridSize}x${gridSize} Grid`;
     let a = 1
     while(a!==((gridSize**2) + 1)){
-        container.style.cssText  = ('style', `height:${container.clientWidth}px`);
+        getContainerSize();
         let size = (100/gridSize) + "%";
 
         const gridDiv = document.createElement('div')

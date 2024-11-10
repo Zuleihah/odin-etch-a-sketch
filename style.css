@@ -4,121 +4,140 @@
 }
 body{
     background-image: linear-gradient(to bottom left, cadetblue, #f3d8db);
-    margin:0;
+    display: flex;
+    gap: 10%;
+    margin:0px;
+    padding: 1% 32px;
+}
+
+.pageData{
+    width:42%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     
 }
 header{
     text-align:center;
 }
 header h1{
-    color:black;
-    margin-bottom: 0;
-    font-size: 4em; 
-    font-weight: 500;  
+    margin:0;
+    font-size: 3.5em; 
+    font-weight: 400;  
+    font-family: 'Monaco';
+    color:#2e2b2b;
 }
-header>.para{
-    margin:1% auto 5%;
-    font-size: 1.5em;
-    color:#6a6868
-
+header>.gridSize{
+    margin:0;
+    font-size: 1.2em;
+    color:#6a6868;
 }
 header>.theme{
-    font-size: 1.5em;
-    color:white;
+    font-size: 1.2em;
+    color:#2e2b2b;
+    background-color: rgb(173,154,154);
+    opacity: 0.6;
+    margin:40px 0px 20px;
 }
-section{
-    display:flex; 
-    gap:5%;
-    margin:16px;
-}
-.container{
-    display:flex;
-    width:78%;
-    flex-flow:wrap;
-    background-color: whitesmoke;
-}
-.menu{
-    width:17%;
-    display:flex;
-    gap:20px;
+
+.pageMenu{
+    width:100%;
+    display: flex;
     flex-direction: column;
-    text-align: center;
+    gap:20px;
+    align-items: center;
+    justify-content: center;
 }
-.input{
+
+.inputMenu{
      display:flex;
 }
-.input > label{
+.inputMenu>label{
     padding: 15px;
-    background-color:buttonface;
-    width:55%;
+    background-color:#efefef;
+    width:55%;   
 }
 #sizeInput{
     width:25%; 
     border:0px;
     outline:0px;
     text-align: center;
+    font-size: 1em;
 }
-.input>.sizeBtn{
+.inputMenu>.sizeBtn{
     width:20%;
     background-color: white;
     border: 0;
+    font-size: 1.2em;
 }
-.clearBtn, .grayScale, .coloredScale, .surpriseMode{
-    padding:15px;
-    border:none;     
-    text-align: center;
-}
+
 .distinctScale{
     padding:9px;
     display: block;
-    background-color: buttonface;
+    background-color: #efefef;
 }
 #colorPicker{border: none;}
 
+.clearBtn, .grayScale, .coloredScale{
+    padding:15px;   
+}
+.clearBtn, .grayScale, .coloredScale, .inputMenu, .distinctScale{
+    width:80%;
+    border:none;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.container{
+    display:flex;
+    width:45%;
+    flex-flow:wrap;
+    background-color: whitesmoke;
+}
+
 @media only screen and (max-width:1024px){
+    body{
+        flex-direction: column;
+        padding:0;
+        align-items: center;
+        gap:0px;
+        margin:10% 5%;
+    }
 
     header>h1{font-size: 2.5em;}
-    header>.para{font-size: 1em;}
-    header>.theme{
-        width:50%;
-        position:absolute;
-        top:225px;
-        left:25%;
-        font-size: 1em;
+    header>.gridSize{font-size: 1em;}
+    .pageData{
+        width:100%;
+        gap:30px;
     }
-    section{
-        align-items: center;
-        flex-direction: column;
-        gap:75px;
-    }
-    .menu{
-        justify-content: center;
+    .pageMenu{
         width:100%;
         flex-flow: wrap;
     }
-    .input{
-        width:50%;
+    .inputMenu{width:65%;}
+   .inputMenu > label{
+        display:flex;
+        justify-content: center;
+        align-items: center;
     }
-   .input > label{
-    display:flex;
-    padding:0px;
-    justify-content: center;
-    align-items: center;
-   }
-   .clearBtn, .grayScale, .coloredScale{padding:8px;}
-   .distinctScale{padding:2px;}
+   .clearBtn, .grayScale, .coloredScale{width:45%;}
+   .distinctScale{padding:10.5px; width:45%}
    .container{width:100%;}
 }
 
 @media only screen and (max-width:400px){
+    body{
+        flex-direction: column;
+    }
     header > h1{font-size: 2em;}
-    section{gap:45px;}
-    .menu{  
+    .pageData{gap:55px;}
+    .pageMenu{  
         overflow: scroll;
         flex-direction: column;
-        height:40px;
+        height:50px;
+        margin-bottom: 30px;
     }
-    .input{ width:60%;}
-    .input > label{padding:8px}
+    .clearBtn, .grayScale, .coloredScale, .inputMenu, .distinctScale {width: 70%;}
     header>.theme {top: 135px;}
 }
